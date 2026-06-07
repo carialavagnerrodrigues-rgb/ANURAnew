@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANURA — Fintech & Microcrédito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════
+   ANURA FINTECH — Design System (Golden Horse palette)
+═══════════════════════════════════════════════════════ */
+:root {
+  --midnight:      #052E2B;
+  --emerald:       #0B5D3B;
+  --emerald-light: #0e7a4e;
+  --gold:          #D4AF37;
+  --gold-light:    #E8C84A;
+  --champagne:     #F5E6A8;
+  --ivory:         #FAF8F2;
+  --ivory-dim:     #F0EBE0;
+  --text-dark:     #1a1a1a;
+  --text-muted:    #6b6b6b;
+  --border:        rgba(212,175,55,0.18);
+  --danger:        #e05252;
+  --success:       #3ecf7c;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Outfit',sans-serif;
+  background:var(--midnight);
+  color:var(--ivory);
+  overflow-x:hidden;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.25rem 4rem;
+  backdrop-filter:blur(20px);
+  background:rgba(5,46,43,0.9);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo {
+  display:flex; align-items:center; gap:0.75rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem; font-weight:600; letter-spacing:0.1em;
+  color:var(--gold); text-decoration:none; cursor:pointer;
+}
+.nav-logo svg { width:34px; height:34px; }
+.nav-links { display:flex; gap:2.5rem; align-items:center; }
+.nav-links a {
+  font-size:0.85rem; font-weight:400; letter-spacing:0.06em;
+  color:rgba(250,248,242,0.7); text-decoration:none;
+  text-transform:uppercase; transition:color 0.2s; cursor:pointer;
+}
+.nav-links a:hover { color:var(--gold); }
+.nav-cta {
+  background:transparent; border:1px solid var(--gold);
+  color:var(--gold) !important; padding:0.55rem 1.4rem;
+  border-radius:2px; font-size:0.8rem !important;
+  font-weight:500 !important; letter-spacing:0.1em;
+  cursor:pointer; transition:background 0.2s,color 0.2s !important;
+}
+.nav-cta:hover { background:var(--gold) !important; color:var(--midnight) !important; }
+.nav-user-area { display:flex; align-items:center; gap:1rem; }
+.nav-user-name {
+  font-size:0.82rem; color:rgba(250,248,242,0.6); letter-spacing:0.04em;
+}
+.btn-logout {
+  background:transparent; border:1px solid rgba(250,248,242,0.2);
+  color:rgba(250,248,242,0.5); padding:0.4rem 0.9rem;
+  border-radius:2px; font-size:0.75rem; cursor:pointer;
+  transition:border-color 0.2s,color 0.2s;
+}
+.btn-logout:hover { border-color:var(--danger); color:var(--danger); }
+
+/* ── PAGES ───────────────────────────────────────────── */
+.page { display:none; }
+.page.active { display:block; }
+
+/* ── HERO ────────────────────────────────────────────── */
+#page-landing {
+  min-height:100vh;
+  background:radial-gradient(ellipse at 80% 20%,rgba(11,93,59,0.45) 0%,transparent 60%),
+             radial-gradient(ellipse at 10% 80%,rgba(212,175,55,0.08) 0%,transparent 50%),
+             var(--midnight);
+}
+.hero {
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:8rem 4rem 4rem;
+  position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(212,175,55,0.03) 80px,rgba(212,175,55,0.03) 81px);
+  pointer-events:none;
+}
+.hero-left { position:relative; z-index:2; }
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:0.6rem;
+  font-size:0.75rem; font-weight:500; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:1.8rem;
+}
+.hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+.hero-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5vw,4.5rem);
+  font-weight:300; line-height:1.1; color:var(--ivory); margin-bottom:1.5rem;
+}
+.hero-title em { font-style:italic; color:var(--gold); font-weight:300; }
+.hero-sub {
+  font-size:1.05rem; font-weight:300; line-height:1.7;
+  color:rgba(250,248,242,0.65); max-width:420px; margin-bottom:3rem;
+}
+.hero-actions { display:flex; gap:1rem; align-items:center; }
+.btn-primary {
+  background:var(--gold); color:var(--midnight); border:none;
+  padding:1rem 2.2rem; font-family:'Outfit',sans-serif;
+  font-size:0.9rem; font-weight:600; letter-spacing:0.06em;
+  text-transform:uppercase; cursor:pointer; border-radius:2px;
+  transition:background 0.2s,transform 0.15s;
+}
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-1px); }
+.btn-ghost {
+  background:transparent; color:var(--ivory);
+  border:1px solid rgba(250,248,242,0.25); padding:1rem 2rem;
+  font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:400;
+  letter-spacing:0.04em; cursor:pointer; border-radius:2px;
+  transition:border-color 0.2s;
+}
+.btn-ghost:hover { border-color:rgba(250,248,242,0.6); }
+.hero-stats {
+  display:flex; gap:2.5rem; margin-top:4rem;
+  padding-top:2rem; border-top:0.5px solid var(--border);
+}
+.hero-stat-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem; font-weight:600; color:var(--gold);
+}
+.hero-stat-label {
+  font-size:0.75rem; color:rgba(250,248,242,0.5);
+  letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem;
+}
+.hero-right {
+  position:relative; display:flex;
+  align-items:center; justify-content:center; z-index:2;
+}
+.horse-container { position:relative; width:480px; height:520px; }
+.horse-glow {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:380px; height:380px;
+  background:radial-gradient(circle,rgba(212,175,55,0.12) 0%,transparent 70%);
+  border-radius:50%; animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform:translate(-50%,-50%) scale(1); opacity:0.8; }
+  50% { transform:translate(-50%,-50%) scale(1.08); opacity:1; }
+}
+.horse-svg {
+  width:100%; height:100%;
+  filter:drop-shadow(0 0 40px rgba(212,175,55,0.2));
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform:translateY(0px); }
+  50% { transform:translateY(-12px); }
+}
+
+/* ── SECTIONS GLOBAL ─────────────────────────────────── */
+section { padding:6rem 4rem; }
+.section-eyebrow {
+  font-size:0.72rem; font-weight:500; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--gold);
+  display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;
+}
+.section-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--gold); }
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:300; line-height:1.2; color:var(--ivory); margin-bottom:1rem;
+}
+
+/* ── FEATURES ────────────────────────────────────────── */
+.features {
+  background:rgba(11,93,59,0.08);
+  border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border);
+}
+.features-header { max-width:540px; margin-bottom:4rem; }
+.features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.feature-card {
+  padding:2.5rem 2rem; background:rgba(5,46,43,0.5);
+  border:0.5px solid var(--border); transition:background 0.3s,border-color 0.3s; cursor:default;
+}
+.feature-card:hover { background:rgba(11,93,59,0.3); border-color:rgba(212,175,55,0.35); }
+.feature-icon {
+  width:48px; height:48px; margin-bottom:1.5rem;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(212,175,55,0.3); border-radius:2px;
+}
+.feature-icon svg { width:24px; height:24px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+.feature-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem; font-weight:400; color:var(--gold); margin-bottom:0.75rem;
+}
+.feature-text { font-size:0.9rem; font-weight:300; line-height:1.7; color:rgba(250,248,242,0.6); }
+
+/* ── PRODUCTS ────────────────────────────────────────── */
+.products { background:var(--midnight); }
+.products-header {
+  display:flex; justify-content:space-between;
+  align-items:flex-end; margin-bottom:3.5rem;
+}
+.products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.product-card {
+  background:rgba(250,248,242,0.04); border:0.5px solid var(--border);
+  border-radius:2px; padding:2rem; position:relative; overflow:hidden;
+  transition:transform 0.3s;
+}
+.product-card:hover { transform:translateY(-4px); }
+.product-card.featured {
+  background:linear-gradient(135deg,rgba(11,93,59,0.4) 0%,rgba(5,46,43,0.6) 100%);
+  border-color:rgba(212,175,55,0.5);
+}
+.product-card.featured::before {
+  content:'Mais Popular'; position:absolute; top:1.25rem; right:1.25rem;
+  font-size:0.65rem; font-weight:500; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--midnight);
+  background:var(--gold); padding:0.25rem 0.65rem;
+}
+.product-apy {
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem; font-weight:300; color:var(--gold); line-height:1;
+}
+.product-apy span { font-size:1.2rem; color:rgba(212,175,55,0.6); }
+.product-name {
+  font-size:0.9rem; font-weight:500; letter-spacing:0.08em;
+  text-transform:uppercase; color:rgba(250,248,242,0.5); margin:0.5rem 0 1.5rem;
+}
+.product-divider { height:0.5px; background:var(--border); margin:1.5rem 0; }
+.product-features { list-style:none; }
+.product-features li {
+  font-size:0.85rem; font-weight:300; color:rgba(250,248,242,0.65);
+  padding:0.4rem 0; display:flex; align-items:center; gap:0.6rem;
+}
+.product-features li::before { content:''; width:16px; height:1px; background:var(--gold); flex-shrink:0; }
+.product-btn {
+  width:100%; margin-top:1.5rem; padding:0.85rem;
+  background:transparent; border:1px solid var(--gold);
+  color:var(--gold); font-family:'Outfit',sans-serif;
+  font-size:0.82rem; font-weight:500; letter-spacing:0.1em;
+  text-transform:uppercase; cursor:pointer; border-radius:2px;
+  transition:background 0.2s,color 0.2s;
+}
+.product-btn:hover { background:var(--gold); color:var(--midnight); }
+.product-card.featured .product-btn { background:var(--gold); color:var(--midnight); }
+.product-card.featured .product-btn:hover { background:var(--gold-light); }
+
+/* ── GROWTH ──────────────────────────────────────────── */
+.growth { background:rgba(11,93,59,0.06); border-top:0.5px solid var(--border); }
+.growth-layout { display:grid; grid-template-columns:1fr 1.6fr; gap:5rem; align-items:center; }
+.growth-points { margin-top:2.5rem; }
+.growth-point {
+  display:flex; align-items:flex-start; gap:1rem;
+  padding:1.25rem 0; border-bottom:0.5px solid var(--border);
+}
+.growth-point:last-child { border-bottom:none; }
+.growth-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem; font-weight:300; color:var(--gold); line-height:1; min-width:60px;
+}
+.growth-num sup { font-size:1rem; }
+.growth-label { font-size:0.85rem; font-weight:300; color:rgba(250,248,242,0.6); line-height:1.6; padding-top:0.3rem; }
+.growth-label strong { color:var(--ivory); font-weight:400; display:block; }
+
+/* ── HOW IT WORKS ────────────────────────────────────── */
+.how { background:var(--midnight); }
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:3.5rem; }
+.step { padding:2rem 1.5rem; border:0.5px solid var(--border); position:relative; }
+.step-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.5rem; font-weight:300; color:rgba(212,175,55,0.2); line-height:1; margin-bottom:1rem;
+}
+.step-title { font-size:1rem; font-weight:500; letter-spacing:0.06em; color:var(--ivory); margin-bottom:0.75rem; }
+.step-text { font-size:0.85rem; font-weight:300; line-height:1.6; color:rgba(250,248,242,0.5); }
+.step-arrow {
+  position:absolute; right:-12px; top:50%;
+  transform:translateY(-50%); font-size:1.2rem; color:rgba(212,175,55,0.4); z-index:2;
+}
+
+/* ── DEPOSIT SECTION ─────────────────────────────────── */
+.deposit { background:rgba(11,93,59,0.04); border-top:0.5px solid var(--border); }
+.deposit-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+.deposit-form-card {
+  background:rgba(250,248,242,0.03);
+  border:0.5px solid var(--border); padding:2.5rem; border-radius:2px;
+}
+.form-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:400; color:var(--ivory); margin-bottom:0.4rem;
+}
+.form-sub { font-size:0.85rem; color:rgba(250,248,242,0.45); margin-bottom:2rem; }
+.form-group { margin-bottom:1.5rem; }
+.form-label {
+  display:block; font-size:0.75rem; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(250,248,242,0.5); margin-bottom:0.6rem;
+}
+.form-input, .form-textarea, .form-select {
+  width:100%; padding:0.85rem 1rem;
+  background:rgba(250,248,242,0.05);
+  border:0.5px solid var(--border);
+  color:var(--ivory); font-family:'Outfit',sans-serif;
+  font-size:0.9rem; border-radius:2px; outline:none;
+  transition:border-color 0.2s;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color:rgba(212,175,55,0.5);
+}
+.form-input::placeholder, .form-textarea::placeholder { color:rgba(250,248,242,0.25); }
+.form-textarea { min-height:120px; resize:vertical; }
+.form-select option { background:var(--midnight); }
+.form-note { font-size:0.75rem; color:rgba(250,248,242,0.3); margin-top:0.4rem; }
+.form-submit {
+  width:100%; padding:1rem;
+  background:var(--gold); color:var(--midnight);
+  border:none; font-family:'Outfit',sans-serif;
+  font-size:0.9rem; font-weight:600;
+  letter-spacing:0.08em; text-transform:uppercase;
+  cursor:pointer; border-radius:2px;
+  transition:background 0.2s,transform 0.15s;
+}
+.form-submit:hover { background:var(--gold-light); transform:translateY(-1px); }
+.form-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+/* ── LOANS ───────────────────────────────────────────── */
+.loans { background:var(--midnight); }
+.loans-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+.locked-notice {
+  margin-top:2rem; padding:1.25rem 1.5rem;
+  border:0.5px solid rgba(212,175,55,0.25);
+  border-left:2px solid var(--gold);
+  font-size:0.88rem; color:rgba(250,248,242,0.55); line-height:1.6;
+}
+.loan-card {
+  background:rgba(250,248,242,0.04); border:0.5px solid var(--border);
+  padding:2rem; border-radius:2px; margin-bottom:1rem;
+}
+.loan-amount {
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem; font-weight:300; color:var(--ivory); margin:0.5rem 0;
+}
+.loan-amount span { font-size:1.2rem; color:rgba(250,248,242,0.4); }
+.loan-meta { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem; }
+.loan-meta-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; color:var(--gold);
+}
+.loan-meta-key { font-size:0.72rem; color:rgba(250,248,242,0.4); letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem; }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+footer {
+  background:rgba(5,46,43,0.3);
+  border-top:0.5px solid var(--border); padding:4rem 4rem 2rem;
+}
+.footer-top {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:4rem; margin-bottom:3rem;
+}
+.footer-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-weight:600; letter-spacing:0.1em;
+  color:var(--gold); display:flex; align-items:center; gap:0.6rem;
+  margin-bottom:1rem;
+}
+.footer-desc { font-size:0.85rem; font-weight:300; line-height:1.7; color:rgba(250,248,242,0.4); }
+.footer-col-title {
+  font-size:0.72rem; font-weight:500; letter-spacing:0.15em;
+  text-transform:uppercase; color:rgba(250,248,242,0.5); margin-bottom:1.2rem;
+}
+.footer-links { list-style:none; }
+.footer-links li { margin-bottom:0.6rem; }
+.footer-links a { font-size:0.85rem; color:rgba(250,248,242,0.4); text-decoration:none; transition:color 0.2s; cursor:pointer; }
+.footer-links a:hover { color:var(--gold); }
+.footer-bottom {
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:2rem; border-top:0.5px solid var(--border);
+}
+.footer-copy { font-size:0.78rem; color:rgba(250,248,242,0.25); }
+.footer-badge {
+  font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:rgba(212,175,55,0.4); border:0.5px solid rgba(212,175,55,0.2);
+  padding:0.35rem 0.8rem;
+}
+
+/* ── DASHBOARD ───────────────────────────────────────── */
+#page-dashboard {
+  min-height:100vh;
+  padding:7rem 4rem 4rem;
+  background:radial-gradient(ellipse at 90% 10%,rgba(11,93,59,0.3) 0%,transparent 50%), var(--midnight);
+}
+.dashboard-header { margin-bottom:3rem; }
+.dashboard-welcome {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3vw,2.5rem); font-weight:300; color:var(--ivory);
+}
+.dashboard-welcome em { font-style:italic; color:var(--gold); }
+.dashboard-sub { font-size:0.9rem; color:rgba(250,248,242,0.4); margin-top:0.4rem; }
+
+.balance-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
+.balance-card {
+  background:rgba(250,248,242,0.04); border:0.5px solid var(--border);
+  padding:1.75rem; border-radius:2px;
+}
+.balance-card.primary { border-color:rgba(212,175,55,0.4); background:rgba(11,93,59,0.2); }
+.balance-label {
+  font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(250,248,242,0.4); margin-bottom:0.75rem;
+}
+.balance-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem; font-weight:300; color:var(--gold); line-height:1;
+}
+.balance-val span { font-size:0.9rem; color:rgba(212,175,55,0.5); margin-left:0.3rem; }
+.balance-score-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem; font-weight:300; color:var(--ivory); line-height:1;
+}
+
+.dash-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2rem; }
+.dash-panel {
+  background:rgba(250,248,242,0.03); border:0.5px solid var(--border); padding:2rem; border-radius:2px;
+}
+.dash-panel-title {
+  font-size:0.8rem; font-weight:500; letter-spacing:0.12em;
+  text-transform:uppercase; color:rgba(250,248,242,0.5); margin-bottom:1.5rem;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.dash-panel-title span {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:400; color:var(--gold);
+  text-transform:none; letter-spacing:0;
+}
+
+.tx-list { list-style:none; }
+.tx-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.85rem 0; border-bottom:0.5px solid var(--border);
+  font-size:0.88rem;
+}
+.tx-item:last-child { border-bottom:none; }
+.tx-type { color:rgba(250,248,242,0.7); display:flex; align-items:center; gap:0.6rem; }
+.tx-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.tx-dot.deposito { background:var(--success); }
+.tx-dot.levantamento { background:var(--gold); }
+.tx-dot.investimento { background:#5b8dee; }
+.tx-dot.credito { background:#c77dff; }
+.tx-amount { font-family:'Cormorant Garamond',serif; font-size:1.1rem; }
+.tx-amount.credit { color:var(--success); }
+.tx-amount.debit { color:rgba(250,248,242,0.6); }
+.tx-status { font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; }
+.tx-status.confirmado { color:var(--success); }
+.tx-status.a_caminho { color:var(--gold); }
+.tx-status.pendente { color:rgba(250,248,242,0.4); }
+.tx-status.depositado { color:var(--success); }
+.tx-status.rejeitado { color:var(--danger); }
+
+.invest-item {
+  padding:1rem 0; border-bottom:0.5px solid var(--border);
+}
+.invest-item:last-child { border-bottom:none; }
+.invest-row {
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;
+}
+.invest-plan { font-size:0.88rem; color:var(--ivory); font-weight:500; text-transform:uppercase; letter-spacing:0.06em; }
+.invest-apy { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--gold); }
+.invest-meta { font-size:0.78rem; color:rgba(250,248,242,0.4); }
+.invest-badge {
+  display:inline-block; font-size:0.65rem; letter-spacing:0.1em;
+  text-transform:uppercase; padding:0.2rem 0.55rem;
+  border-radius:2px; margin-left:0.5rem;
+}
+.invest-badge.ativo { background:rgba(62,207,124,0.15); color:var(--success); border:0.5px solid rgba(62,207,124,0.3); }
+.invest-badge.carencia { background:rgba(212,175,55,0.15); color:var(--gold); border:0.5px solid rgba(212,175,55,0.3); }
+
+/* ── AUTH MODALS ─────────────────────────────────────── */
+.modal-overlay {
+  position:fixed; inset:0; z-index:999;
+  background:rgba(5,46,43,0.85);
+  backdrop-filter:blur(12px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.25s;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal {
+  background:var(--midnight); border:0.5px solid var(--border);
+  width:100%; max-width:440px; padding:2.5rem;
+  border-radius:2px; position:relative;
+}
+.modal-close {
+  position:absolute; top:1rem; right:1rem;
+  background:transparent; border:none; color:rgba(250,248,242,0.4);
+  font-size:1.4rem; cursor:pointer; line-height:1;
+  transition:color 0.2s;
+}
+.modal-close:hover { color:var(--gold); }
+.modal-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem; font-weight:300; color:var(--ivory); margin-bottom:0.4rem;
+}
+.modal-sub { font-size:0.85rem; color:rgba(250,248,242,0.4); margin-bottom:2rem; }
+.modal-switch {
+  margin-top:1.5rem; text-align:center;
+  font-size:0.85rem; color:rgba(250,248,242,0.4);
+}
+.modal-switch a { color:var(--gold); cursor:pointer; text-decoration:none; }
+.modal-switch a:hover { text-decoration:underline; }
+.form-error {
+  font-size:0.82rem; color:var(--danger); margin-top:0.5rem;
+  padding:0.6rem 0.9rem; background:rgba(224,82,82,0.08);
+  border:0.5px solid rgba(224,82,82,0.25); border-radius:2px;
+  display:none;
+}
+.form-error.show { display:block; }
+.form-success {
+  font-size:0.82rem; color:var(--success); margin-top:0.5rem;
+  padding:0.6rem 0.9rem; background:rgba(62,207,124,0.08);
+  border:0.5px solid rgba(62,207,124,0.25); border-radius:2px;
+  display:none;
+}
+.form-success.show { display:block; }
+
+/* ── TOAST ───────────────────────────────────────────── */
+#toast {
+  position:fixed; bottom:2rem; right:2rem; z-index:9999;
+  background:rgba(5,46,43,0.95); border:0.5px solid var(--border);
+  backdrop-filter:blur(16px); padding:1rem 1.5rem;
+  max-width:360px; border-radius:2px;
+  font-size:0.9rem; color:var(--ivory); line-height:1.5;
+  border-left:2px solid var(--gold);
+  transform:translateY(20px); opacity:0;
+  transition:transform 0.3s,opacity 0.3s; pointer-events:none;
+}
+#toast.show { transform:translateY(0); opacity:1; }
+
+/* ── DASHBOARD FORMS ─────────────────────────────────── */
+.dash-form-section { margin-top:2rem; }
+.dash-form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+/* ── INVEST MODAL ────────────────────────────────────── */
+.invest-form { margin-top:1.5rem; }
+
+/* ── LOADING SPINNER ─────────────────────────────────── */
+.spinner {
+  display:inline-block; width:14px; height:14px;
+  border:2px solid rgba(5,46,43,0.4);
+  border-top-color:var(--midnight);
+  border-radius:50%; animation:spin 0.6s linear infinite;
+  margin-right:8px; vertical-align:middle;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── SCROLL ANIMATIONS ───────────────────────────────── */
+.fade-in {
+  opacity:0; transform:translateY(20px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity:1; transform:translateY(0); }
+
+/* ── ADMIN PANEL ─────────────────────────────────────── */
+#page-admin {
+  min-height:100vh; padding:7rem 4rem 4rem;
+  background:var(--midnight);
+}
+.admin-tabs { display:flex; gap:0; border-bottom:0.5px solid var(--border); margin-bottom:2rem; }
+.admin-tab {
+  padding:0.75rem 1.5rem; background:transparent;
+  border:none; border-bottom:2px solid transparent;
+  color:rgba(250,248,242,0.5); font-family:'Outfit',sans-serif;
+  font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase;
+  cursor:pointer; transition:color 0.2s,border-color 0.2s;
+}
+.admin-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.admin-table {
+  width:100%; border-collapse:collapse; font-size:0.85rem;
+}
+.admin-table th {
+  text-align:left; padding:0.75rem 1rem;
+  font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(250,248,242,0.4); border-bottom:0.5px solid var(--border);
+  font-weight:500;
+}
+.admin-table td {
+  padding:0.85rem 1rem; border-bottom:0.5px solid rgba(212,175,55,0.06);
+  color:rgba(250,248,242,0.75);
+}
+.admin-table tr:hover td { background:rgba(212,175,55,0.03); }
+.btn-approve {
+  background:transparent; border:0.5px solid var(--success);
+  color:var(--success); padding:0.3rem 0.8rem;
+  font-size:0.72rem; cursor:pointer; border-radius:2px;
+  transition:background 0.2s,color 0.2s;
+}
+.btn-approve:hover { background:var(--success); color:var(--midnight); }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width:900px) {
+  nav { padding:1rem 1.5rem; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; padding:6rem 1.5rem 3rem; }
+  .hero-right { display:none; }
+  section { padding:4rem 1.5rem; }
+  .features-grid, .products-grid { grid-template-columns:1fr; }
+  .steps { grid-template-columns:1fr 1fr; }
+  .deposit-layout, .loans-layout, .growth-layout, .dash-grid, .balance-cards, .footer-top { grid-template-columns:1fr; }
+  .products-header { flex-direction:column; align-items:flex-start; gap:1rem; }
+  #page-dashboard, #page-admin { padding:5rem 1.5rem 3rem; }
+  .dash-form-row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="goTo('landing')">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 3C18 3 8 9 7 18C6 27 12 33 18 34C24 33 30 27 29 18C28 9 18 3 18 3Z" stroke="#D4AF37" stroke-width="1" fill="rgba(212,175,55,0.06)"/>
+      <path d="M11 24 Q13 15 18 13 Q23 15 25 24" stroke="#D4AF37" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="18" cy="20" r="2" fill="#D4AF37" opacity="0.6"/>
+    </svg>
+    ANURA
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a onclick="goTo('landing'); scrollSect('produtos')">Investimentos</a>
+    <a onclick="goTo('landing'); scrollSect('como-funciona')">Como Funciona</a>
+    <a onclick="goTo('landing'); scrollSect('depositar')">Depositar</a>
+    <a onclick="goTo('landing'); scrollSect('credito')">Crédito</a>
+  </div>
+  <div id="navGuest">
+    <a class="nav-cta" onclick="openModal('login')">Entrar</a>
+  </div>
+  <div id="navUser" style="display:none" class="nav-user-area">
+    <span class="nav-user-name" id="navUserName">—</span>
+    <a class="nav-cta" onclick="goTo('dashboard')">Painel</a>
+    <button class="btn-logout" onclick="doLogout()">Sair</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════════════════════════ -->
+<div id="page-landing" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Fintech & Microcrédito · Moçambique</div>
+      <h1 class="hero-title">
+        O seu dinheiro,<br><em>a trabalhar</em><br>por si.
+      </h1>
+      <p class="hero-sub">
+        Deposite via M-Pesa ou transferência bancária. Invista com rendimentos anualizados até 24%. Levante em 2 minutos. Construído para Moçambique.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="openModal('register')">Abrir Conta Grátis</button>
+        <button class="btn-ghost" onclick="scrollSect('como-funciona')">Como Funciona</button>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">200 MT</div>
+          <div class="hero-stat-label">Depósito Mínimo</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">24% APY</div>
+          <div class="hero-stat-label">Retorno Anual Máx.</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">2 min</div>
+          <div class="hero-stat-label">Para Levantar</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="horse-container">
+        <div class="horse-glow"></div>
+        <svg class="horse-svg" viewBox="0 0 480 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#c5a059" stop-opacity="0.7"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="240" cy="290" rx="200" ry="200" fill="url(#glow)"/>
+          <g stroke="url(#bodyGrad)" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Body -->
+            <path d="M 160 300 Q 155 260 165 240 Q 180 220 210 215 Q 240 210 265 220 Q 295 235 305 260 Q 315 285 310 320 Q 305 355 285 370 Q 265 385 240 382 Q 210 380 190 365 Q 168 348 160 300 Z" fill="rgba(212,175,55,0.07)" stroke-width="1.2"/>
+            <!-- Neck -->
+            <path d="M 210 215 Q 215 190 225 175 Q 235 160 245 158 Q 255 156 263 162 Q 270 170 268 185 Q 265 200 258 210 Q 252 218 245 220" fill="rgba(212,175,55,0.05)" stroke-width="1.2"/>
+            <!-- Head -->
+            <path d="M 245 158 Q 258 145 270 140 Q 282 137 290 142 Q 298 148 296 160 Q 294 172 285 180 Q 276 187 265 185 Q 252 182 245 172 Z" fill="rgba(212,175,55,0.08)" stroke-width="1.2"/>
+            <!-- Mane -->
+            <path d="M 228 172 Q 220 160 218 150 Q 218 140 224 135" stroke-width="0.8" fill="none"/>
+            <path d="M 235 168 Q 225 155 224 143 Q 224 133 230 128" stroke-width="0.8" fill="none"/>
+            <path d="M 242 165 Q 234 150 233 138 Q 233 127 239 122" stroke-width="0.8" fill="none"/>
+            <!-- Legs -->
+            <path d="M 185 368 Q 182 390 178 415 Q 175 430 176 445 Q 177 455 183 456 Q 189 456 191 445 Q 193 430 193 410 Q 193 390 192 370" stroke-width="1.4" fill="none"/>
+            <path d="M 215 378 Q 213 400 212 425 Q 211 440 213 452 Q 215 460 220 459 Q 225 458 226 448 Q 227 435 226 415 Q 225 395 222 378" stroke-width="1.4" fill="none"/>
+            <path d="M 265 378 Q 267 400 268 425 Q 269 440 267 452 Q 265 460 260 459 Q 255 458 254 448 Q 253 435 254 415 Q 255 395 260 378" stroke-width="1.4" fill="none"/>
+            <path d="M 295 365 Q 298 388 300 413 Q 302 428 301 443 Q 300 453 294 454 Q 288 454 286 444 Q 285 430 286 410 Q 287 390 290 368" stroke-width="1.4" fill="none"/>
+            <!-- Tail -->
+            <path d="M 160 320 Q 135 338 125 375 Q 128 405 140 398 Q 146 372 158 360" fill="none" stroke-width="1.2"/>
+            <!-- Eye -->
+            <circle cx="280" cy="153" r="3" fill="#D4AF37" opacity="0.9"/>
+            <!-- Nostril -->
+            <path d="M 292 168 Q 297 166 297 171" stroke-width="1" fill="none"/>
+            <!-- Hooves -->
+            <path d="M 173 453 Q 183 456 193 453" stroke-width="2" fill="none"/>
+            <path d="M 210 457 Q 220 460 228 457" stroke-width="2" fill="none"/>
+            <path d="M 252 457 Q 262 460 270 457" stroke-width="2" fill="none"/>
+            <path d="M 284 452 Q 294 455 302 452" stroke-width="2" fill="none"/>
+            <!-- Growth chart in background -->
+            <polyline points="95,305 115,285 138,295 162,265 182,275" stroke="#D4AF37" stroke-width="0.7" fill="none" opacity="0.3"/>
+          </g>
+          <!-- Accent dots -->
+          <circle cx="245" cy="155" r="2" fill="#D4AF37" opacity="0.7"/>
+          <circle cx="200" cy="260" r="2" fill="#D4AF37" opacity="0.5"/>
+          <circle cx="310" cy="255" r="2" fill="#D4AF37" opacity="0.5"/>
+          <circle cx="290" cy="350" r="2" fill="#D4AF37" opacity="0.4"/>
+          <!-- Growth chart overlay -->
+          <polyline points="340,370 358,348 375,358 398,320 415,328 432,300" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.35" stroke-dasharray="4,3"/>
+          <circle cx="432" cy="300" r="3" fill="#D4AF37" opacity="0.5"/>
+          <!-- Decorative grid -->
+          <line x1="80" y1="428" x2="420" y2="428" stroke="rgba(212,175,55,0.12)" stroke-width="0.5"/>
+          <line x1="80" y1="388" x2="420" y2="388" stroke="rgba(212,175,55,0.07)" stroke-width="0.5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="como-funciona-intro">
+    <div class="features-header">
+      <div class="section-eyebrow">Porquê ANURA</div>
+      <h2 class="section-title">Construído para quem<br>quer avançar.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="feature-title">Velocidade Real</div>
+        <div class="feature-text">Depósitos confirmados em instantes. Levantamentos processados em 2 minutos. Zero esperas desnecessárias.</div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="feature-title">Segurança Bancária</div>
+        <div class="feature-text">Autenticação JWT, cookies HttpOnly e verificação rigorosa de comprovativos M-Pesa e transferência bancária.</div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="feature-title">Rendimentos Reais</div>
+        <div class="feature-text">Invista com taxas anualizadas de 8% a 24% APY. Carência de 15 dias garante solidez ao fundo.</div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="feature-title">Crédito Acessível</div>
+        <div class="feature-text">Score de crédito construído pelo seu histórico. Quanto mais deposita, maior o seu acesso a financiamento.</div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="feature-title">Crescimento Contínuo</div>
+        <div class="feature-text">Painel com histórico de transações, rendimentos acumulados e status de investimentos em tempo real.</div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="feature-title">Disponível 24/7</div>
+        <div class="feature-text">Plataforma sempre ativa. Gerencie os seus fundos a qualquer hora, de qualquer lugar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="produtos">
+    <div class="products-header">
+      <div>
+        <div class="section-eyebrow">Planos de Investimento</div>
+        <h2 class="section-title">Escolha o seu<br>ritmo de crescimento.</h2>
+      </div>
+      <p style="font-size:0.88rem;color:rgba(250,248,242,0.45);max-width:280px;text-align:right;font-weight:300;line-height:1.6;">Capital bloqueado 15 dias. Após carência, levantamento livre a qualquer momento.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card fade-in">
+        <div class="product-apy">8%<span>/ano</span></div>
+        <div class="product-name">Plano Starter</div>
+        <ul class="product-features">
+          <li>Depósito mínimo: 200 MT</li>
+          <li>Carência: 15 dias</li>
+          <li>Levantamentos livres</li>
+          <li>Aprovação automática</li>
+          <li>Score de crédito básico</li>
+        </ul>
+        <div class="product-divider"></div>
+        <button class="product-btn" onclick="selectPlan('starter')">Selecionar Plano</button>
+      </div>
+      <div class="product-card featured fade-in">
+        <div class="product-apy">16%<span>/ano</span></div>
+        <div class="product-name">Plano Gold</div>
+        <ul class="product-features">
+          <li>Depósito mínimo: 2.000 MT</li>
+          <li>Carência: 15 dias</li>
+          <li>Prioridade nos levantamentos</li>
+          <li>Acesso a crédito ampliado</li>
+          <li>Score de crédito premium</li>
+          <li>Suporte prioritário 24/7</li>
+        </ul>
+        <div class="product-divider"></div>
+        <button class="product-btn" onclick="selectPlan('gold')">Selecionar Plano</button>
+      </div>
+      <div class="product-card fade-in">
+        <div class="product-apy">24%<span>/ano</span></div>
+        <div class="product-name">Plano Elite</div>
+        <ul class="product-features">
+          <li>Depósito mínimo: 10.000 MT</li>
+          <li>Carência: 15 dias</li>
+          <li>Gestor de conta dedicado</li>
+          <li>Crédito empresarial</li>
+          <li>Score institucional</li>
+          <li>Relatórios mensais</li>
+        </ul>
+        <div class="product-divider"></div>
+        <button class="product-btn" onclick="selectPlan('elite')">Selecionar Plano</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH CHART -->
+  <section class="growth">
+    <div class="growth-layout">
+      <div>
+        <div class="section-eyebrow">Números que Importam</div>
+        <h2 class="section-title">Solidez construída<br>passo a passo.</h2>
+        <div class="growth-points">
+          <div class="growth-point fade-in">
+            <div class="growth-num">200<sup>MT</sup></div>
+            <div class="growth-label"><strong>Barreira de entrada mínima</strong>Acessível para todos. Qualquer moçambicano pode começar hoje.</div>
+          </div>
+          <div class="growth-point fade-in">
+            <div class="growth-num">2<sup>min</sup></div>
+            <div class="growth-label"><strong>Tempo de processamento</strong>Do pedido à confirmação. O mais rápido do mercado local.</div>
+          </div>
+          <div class="growth-point fade-in">
+            <div class="growth-num">15<sup>dias</sup></div>
+            <div class="growth-label"><strong>Período de carência</strong>Protege o seu capital e garante a estabilidade do fundo.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <svg viewBox="0 0 480 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%">
+          <defs>
+            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="40" y1="250" x2="460" y2="250" stroke="rgba(212,175,55,0.1)" stroke-width="1"/>
+          <line x1="40" y1="200" x2="460" y2="200" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
+          <line x1="40" y1="150" x2="460" y2="150" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
+          <line x1="40" y1="100" x2="460" y2="100" stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
+          <line x1="40" y1="50"  x2="460" y2="50"  stroke="rgba(212,175,55,0.07)" stroke-width="1"/>
+          <path d="M 60 240 Q 100 235 140 220 Q 190 200 230 185 Q 275 165 310 145 Q 355 118 390 95 Q 420 75 440 55 L 440 250 Z" fill="url(#chartGrad)"/>
+          <path d="M 60 240 Q 100 235 140 220 Q 190 200 230 185 Q 275 165 310 145 Q 355 118 390 95 Q 420 75 440 55" stroke="#D4AF37" stroke-width="2" fill="none"/>
+          <circle cx="60"  cy="240" r="4" fill="#D4AF37" opacity="0.7"/>
+          <circle cx="140" cy="220" r="4" fill="#D4AF37" opacity="0.7"/>
+          <circle cx="230" cy="185" r="4" fill="#D4AF37" opacity="0.7"/>
+          <circle cx="310" cy="145" r="4" fill="#D4AF37" opacity="0.7"/>
+          <circle cx="390" cy="95"  r="4" fill="#D4AF37" opacity="0.7"/>
+          <circle cx="440" cy="55"  r="5" fill="#D4AF37"/>
+          <text x="60"  y="268" fill="rgba(250,248,242,0.35)" font-size="10" font-family="Outfit" text-anchor="middle">Jan</text>
+          <text x="140" y="268" fill="rgba(250,248,242,0.35)" font-size="10" font-family="Outfit" text-anchor="middle">Mar</text>
+          <text x="230" y="268" fill="rgba(250,248,242,0.35)" font-size="10" font-family="Outfit" text-anchor="middle">Mai</text>
+          <text x="310" y="268" fill="rgba(250,248,242,0.35)" font-size="10" font-family="Outfit" text-anchor="middle">Jul</text>
+          <text x="390" y="268" fill="rgba(250,248,242,0.35)" font-size="10" font-family="Outfit" text-anchor="middle">Set</text>
+          <text x="440" y="268" fill="rgba(250,248,242,0.35)" font-size="10" font-family="Outfit" text-anchor="middle">Nov</text>
+          <text x="448" y="52" fill="#D4AF37" font-size="11" font-family="Outfit">+24%</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="como-funciona">
+    <div class="section-eyebrow">Como Funciona</div>
+    <h2 class="section-title">Simples. Seguro. Eficaz.</h2>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">01</div>
+        <div class="step-title">Registe-se</div>
+        <div class="step-text">Crie a sua conta em menos de 2 minutos. Processo digital sem burocracia.</div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">02</div>
+        <div class="step-title">Deposite</div>
+        <div class="step-text">Transfira via M-Pesa ou banco. Cole o comprovativo e o sistema valida automaticamente.</div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">03</div>
+        <div class="step-title">Invista</div>
+        <div class="step-text">Aloque o seu capital no plano escolhido. O APY começa a correr imediatamente.</div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">04</div>
+        <div class="step-title">Levante</div>
+        <div class="step-text">Após os 15 dias de carência, levante a qualquer momento. Fundos na conta em 2 minutos.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOSIT -->
+  <section class="deposit" id="depositar">
+    <div class="deposit-layout">
+      <div>
+        <div class="section-eyebrow">Depositar</div>
+        <h2 class="section-title">O seu primeiro passo<br>começa aqui.</h2>
+        <p style="font-size:0.9rem;color:rgba(250,248,242,0.5);line-height:1.7;margin-top:1rem;max-width:380px;">
+          Após efetuar a transferência via M-Pesa ou banco, cole o texto do comprovativo. O sistema valida e credita automaticamente.
+        </p>
+        <div style="margin-top:2.5rem;padding:1.5rem;border:0.5px solid var(--border);border-left:2px solid var(--gold);">
+          <div style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Número de Conta M-Pesa</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--ivory);">+258 84 000 0000</div>
+          <div style="font-size:0.8rem;color:rgba(250,248,242,0.4);margin-top:0.3rem;">ANURA Fintech, Lda.</div>
+        </div>
+      </div>
+      <div class="deposit-form-card">
+        <div class="form-title">Validar Depósito</div>
+        <div class="form-sub">Cole o texto do SMS ou comprovativo de transferência</div>
+        <div id="depositFormErr" class="form-error"></div>
+        <div id="depositFormOk"  class="form-success"></div>
+        <div class="form-group">
+          <label class="form-label">Valor (MT)</label>
+          <input type="number" class="form-input" id="depositAmount" placeholder="Ex: 500" min="200">
+          <div class="form-note">Mínimo: 200 MT</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Texto do Comprovativo</label>
+          <textarea class="form-textarea" id="depositText" placeholder="Cole aqui o texto do SMS M-Pesa ou comprovativo bancário...&#10;&#10;Ex: Transacao No: 12345678&#10;Recebemos de: +258 84 999 9999&#10;Valor: 500 MT&#10;Data: 07/06/2026"></textarea>
+        </div>
+        <button class="form-submit" id="btnDeposit" onclick="handleDeposit()">Validar e Depositar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOANS -->
+  <section class="loans" id="credito">
+    <div class="loans-layout">
+      <div>
+        <div class="section-eyebrow">Microcrédito</div>
+        <h2 class="section-title">Crédito que nasce<br>do seu historial.</h2>
+        <p style="font-size:0.9rem;color:rgba(250,248,242,0.5);line-height:1.7;margin-top:1rem;max-width:380px;">
+          O seu Score de Crédito ANURA é construído automaticamente com cada depósito confirmado. Sem burocracia, sem fiadores.
+        </p>
+        <div class="locked-notice" id="loanNotice">
+          <strong style="color:var(--gold);display:block;margin-bottom:0.3rem;">🔒 Funcionalidade de Crédito Bloqueada</strong>
+          Efetue o seu primeiro depósito mínimo de 200 MT para desbloquear o seu Score de Crédito e aceder aos planos de financiamento.
+        </div>
+      </div>
+      <div>
+        <div class="loan-card" style="opacity:0.4;pointer-events:none;" id="loanCards">
+          <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,175,55,0.5);margin-bottom:0.5rem;">Crédito Disponível</div>
+          <div class="loan-amount">5.000 <span>MT</span></div>
+          <div class="loan-meta">
+            <div class="loan-meta-item">
+              <div class="loan-meta-val">3.5%</div>
+              <div class="loan-meta-key">Taxa Mensal</div>
+            </div>
+            <div class="loan-meta-item">
+              <div class="loan-meta-val">6 meses</div>
+              <div class="loan-meta-key">Prazo Máx.</div>
+            </div>
+            <div class="loan-meta-item">
+              <div class="loan-meta-val" id="loanScoreDisp">Score 0</div>
+              <div class="loan-meta-key">Crédito</div>
+            </div>
+          </div>
+        </div>
+        <button class="product-btn" id="btnLoan" style="width:100%;margin-top:0.5rem;opacity:0.4;" onclick="handleLoan()">Solicitar Empréstimo</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+            <path d="M18 3C18 3 8 9 7 18C6 27 12 33 18 34C24 33 30 27 29 18C28 9 18 3 18 3Z" stroke="#D4AF37" stroke-width="1" fill="none"/>
+            <path d="M11 24 Q13 15 18 13 Q23 15 25 24" stroke="#D4AF37" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+          ANURA
+        </div>
+        <p class="footer-desc">Impulsionando o crescimento financeiro de moçambicanos através de tecnologia, transparência e confiança.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Plataforma</div>
+        <ul class="footer-links">
+          <li><a onclick="scrollSect('depositar')">Depositar</a></li>
+          <li><a onclick="scrollSect('produtos')">Investimentos</a></li>
+          <li><a onclick="scrollSect('credito')">Microcrédito</a></li>
+          <li><a onclick="scrollSect('como-funciona')">Como Funciona</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Regulamento Interno</a></li>
+          <li><a href="#">Conformidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Suporte</div>
+        <ul class="footer-links">
+          <li><a href="#">Centro de Ajuda</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Email</a></li>
+          <li><a href="#">Reclamações</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ANURA Fintech, Lda. Todos os direitos reservados. Maputo, Moçambique.</div>
+      <div class="footer-badge">Plataforma Segura SSL</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="dashboard-header">
+    <div class="dashboard-welcome">Bem-vindo, <em id="dashName">—</em></div>
+    <div class="dashboard-sub" id="dashDate">—</div>
+  </div>
+
+  <!-- Balance Cards -->
+  <div class="balance-cards">
+    <div class="balance-card primary">
+      <div class="balance-label">Saldo Disponível</div>
+      <div class="balance-val" id="dashSaldo">0 <span>MT</span></div>
+    </div>
+    <div class="balance-card">
+      <div class="balance-label">Capital Investido</div>
+      <div class="balance-val" id="dashInvestido">0 <span>MT</span></div>
+    </div>
+    <div class="balance-card">
+      <div class="balance-label">Score de Crédito</div>
+      <div class="balance-score-val" id="dashScore">0</div>
+    </div>
+  </div>
+
+  <!-- Actions Grid -->
+  <div class="dash-grid">
+    <!-- Deposit Panel -->
+    <div class="dash-panel">
+      <div class="dash-panel-title">Depositar <span>Via M-Pesa / Banco</span></div>
+      <div id="dashDepErr" class="form-error"></div>
+      <div id="dashDepOk"  class="form-success"></div>
+      <div class="form-group">
+        <label class="form-label">Valor (MT)</label>
+        <input type="number" class="form-input" id="dashDepAmount" placeholder="Mínimo 200 MT" min="200">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Texto do Comprovativo</label>
+        <textarea class="form-textarea" id="dashDepText" placeholder="Cole o SMS M-Pesa ou comprovativo bancário aqui..."></textarea>
+      </div>
+      <button class="form-submit" id="btnDashDep" onclick="dashDeposit()">Validar e Creditar</button>
+    </div>
+
+    <!-- Withdraw Panel -->
+    <div class="dash-panel">
+      <div class="dash-panel-title">Levantar <span>Fundos</span></div>
+      <div id="dashWdErr" class="form-error"></div>
+      <div id="dashWdOk"  class="form-success"></div>
+      <div class="form-group">
+        <label class="form-label">Valor a Levantar (MT)</label>
+        <input type="number" class="form-input" id="dashWdAmount" placeholder="Ex: 500">
+      </div>
+      <p style="font-size:0.82rem;color:rgba(250,248,242,0.4);line-height:1.6;margin-bottom:1.5rem;">
+        Os fundos serão depositados na sua conta em 2 minutos. Capital investido em carência (menos de 15 dias) não pode ser levantado.
+      </p>
+      <button class="form-submit" id="btnDashWd" onclick="dashWithdraw()">Solicitar Levantamento</button>
+    </div>
+
+    <!-- Invest Panel -->
+    <div class="dash-panel">
+      <div class="dash-panel-title">Investir <span>Escolha o Plano</span></div>
+      <div id="dashInvErr" class="form-error"></div>
+      <div id="dashInvOk"  class="form-success"></div>
+      <div class="form-group">
+        <label class="form-label">Plano</label>
+        <select class="form-select" id="dashInvPlan">
+          <option value="starter">Starter — 8% APY (mín. 200 MT)</option>
+          <option value="gold">Gold — 16% APY (mín. 2.000 MT)</option>
+          <option value="elite">Elite — 24% APY (mín. 10.000 MT)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Valor a Alocar (MT)</label>
+        <input type="number" class="form-input" id="dashInvAmount" placeholder="Ex: 1000">
+      </div>
+      <button class="form-submit" id="btnDashInv" onclick="dashInvest()">Alocar Capital</button>
+    </div>
+
+    <!-- Loan Panel -->
+    <div class="dash-panel">
+      <div class="dash-panel-title">Solicitar Crédito <span>Score-Based</span></div>
+      <div id="dashLoanErr" class="form-error"></div>
+      <div id="dashLoanOk"  class="form-success"></div>
+      <div class="form-group">
+        <label class="form-label">Valor do Empréstimo (MT)</label>
+        <input type="number" class="form-input" id="dashLoanAmount" placeholder="Ex: 2000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prazo (Meses)</label>
+        <select class="form-select" id="dashLoanPrazo">
+          <option value="3">3 meses</option>
+          <option value="6">6 meses</option>
+          <option value="12">12 meses</option>
+        </select>
+      </div>
+      <p style="font-size:0.78rem;color:rgba(250,248,242,0.35);margin-bottom:1rem;">Taxa: 3.5% a.m. · Requer depósito confirmado.</p>
+      <button class="form-submit" id="btnDashLoan" onclick="dashLoan()">Pedir Empréstimo</button>
+    </div>
+  </div>
+
+  <!-- Transactions & Investments -->
+  <div class="dash-grid">
+    <div class="dash-panel">
+      <div class="dash-panel-title">Histórico de Transações</div>
+      <ul class="tx-list" id="txList"><li style="color:rgba(250,248,242,0.3);font-size:0.85rem;padding:1rem 0;">A carregar...</li></ul>
+    </div>
+    <div class="dash-panel">
+      <div class="dash-panel-title">Investimentos Ativos</div>
+      <div id="investList"><div style="color:rgba(250,248,242,0.3);font-size:0.85rem;padding:1rem 0;">A carregar...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     ADMIN PANEL
+══════════════════════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+  <h2 class="section-title" style="margin-bottom:2rem;">Painel de <em style="font-style:italic;color:var(--gold);">Administração</em></h2>
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="adminTab('users')">Utilizadores</button>
+    <button class="admin-tab" onclick="adminTab('txs')">Transações</button>
+  </div>
+  <div id="adminContent">A carregar...</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════════ -->
+
+<!-- LOGIN -->
+<div class="modal-overlay" id="modalLogin">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">×</button>
+    <div class="modal-title">Entrar</div>
+    <div class="modal-sub">Aceda à sua conta ANURA</div>
+    <div id="loginErr" class="form-error"></div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="loginEmail" placeholder="o.seu@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Palavra-passe</label>
+      <input type="password" class="form-input" id="loginPass" placeholder="••••••••">
+    </div>
+    <button class="form-submit" id="btnLogin" onclick="doLogin()">Entrar na Conta</button>
+    <div class="modal-switch">Não tem conta? <a onclick="closeModal('login');openModal('register')">Registar-se gratuitamente</a></div>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div class="modal-overlay" id="modalRegister">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('register')">×</button>
+    <div class="modal-title">Criar Conta</div>
+    <div class="modal-sub">Junte-se à ANURA Fintech</div>
+    <div id="regErr" class="form-error"></div>
+    <div id="regOk"  class="form-success"></div>
+    <div class="form-group">
+      <label class="form-label">Nome Completo</label>
+      <input type="text" class="form-input" id="regNome" placeholder="Seu nome">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="regEmail" placeholder="o.seu@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Telefone</label>
+      <input type="tel" class="form-input" id="regTel" placeholder="+258 84 000 0000">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Palavra-passe</label>
+      <input type="password" class="form-input" id="regPass" placeholder="Mínimo 8 caracteres">
+    </div>
+    <button class="form-submit" id="btnReg" onclick="doRegister()">Criar Conta Grátis</button>
+    <div class="modal-switch">Já tem conta? <a onclick="closeModal('register');openModal('login')">Entrar</a></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT — API INTEGRATION
+══════════════════════════════════════════════════════════ -->
+<script>
+// ── STATE ─────────────────────────────────────────────────────
+let STATE = {
+  user: null,
+  token: localStorage.getItem('anura_token') || null
+};
+
+// ── UTILS ─────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+
+function showToast(msg, duration=4500) {
+  const t = $('toast');
+  t.innerHTML = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+function setLoading(btnId, loading, text='') {
+  const btn = $(btnId);
+  if (!btn) return;
+  btn.disabled = loading;
+  if (loading) btn.innerHTML = `<span class="spinner"></span>${text || 'A processar...'}`;
+  else btn.innerHTML = text;
+}
+
+function showErr(id, msg) {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 6000);
+}
+
+function showOk(id, msg) {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 6000);
+}
+
+function fmtMT(val) {
+  return Number(val).toLocaleString('pt-MZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function fmtDate(d) {
+  return new Date(d).toLocaleString('pt-MZ', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  $(`page-${page}`).classList.add('active');
+  window.scrollTo(0, 0);
+
+  if (page === 'dashboard') {
+    loadDashboard();
+  }
+  if (page === 'admin') {
+    loadAdminUsers();
+  }
+}
+
+function scrollSect(id) {
+  const el = $(id) || document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── AUTH MODALS ───────────────────────────────────────────────
+function openModal(name) {
+  $(`modal${name.charAt(0).toUpperCase()+name.slice(1)}`).classList.add('open');
+}
+function closeModal(name) {
+  $(`modal${name.charAt(0).toUpperCase()+name.slice(1)}`).classList.remove('open');
+}
+
+// Close on overlay click
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+});
+
+// ── API HELPER ────────────────────────────────────────────────
+async function api(method, path, body) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (STATE.token) headers['Authorization'] = `Bearer ${STATE.token}`;
+  const res = await fetch(path, {
+    method, headers, credentials: 'include',
+    body: body ? JSON.stringify(body) : undefined
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.erro || 'Erro desconhecido');
+  return data;
+}
+
+// ── UPDATE NAV ────────────────────────────────────────────────
+function updateNav() {
+  if (STATE.user) {
+    $('navGuest').style.display = 'none';
+    $('navUser').style.display = 'flex';
+    $('navUserName').textContent = STATE.user.nome?.split(' ')[0] || STATE.user.email;
+  } else {
+    $('navGuest').style.display = 'block';
+    $('navUser').style.display = 'none';
+  }
+}
+
+// ── AUTH ──────────────────────────────────────────────────────
+async function doLogin() {
+  const email = $('loginEmail').value.trim();
+  const pass  = $('loginPass').value;
+  if (!email || !pass) { showErr('loginErr', 'Preencha o email e a palavra-passe.'); return; }
+
+  setLoading('btnLogin', true, 'A entrar...');
+  try {
+    const data = await api('POST', '/api/auth/login', { email, password: pass });
+    STATE.token = data.token;
+    STATE.user  = data.user;
+    localStorage.setItem('anura_token', data.token);
+    closeModal('login');
+    updateNav();
+    showToast(`✓ Bem-vindo, <strong>${data.user.nome.split(' ')[0]}</strong>!`);
+    goTo(data.user.role === 'admin' ? 'admin' : 'dashboard');
+  } catch (err) {
+    showErr('loginErr', err.message);
+  } finally {
+    setLoading('btnLogin', false, 'Entrar na Conta');
+  }
+}
+
+async function doRegister() {
+  const nome  = $('regNome').value.trim();
+  const email = $('regEmail').value.trim();
+  const tel   = $('regTel').value.trim();
+  const pass  = $('regPass').value;
+  if (!nome || !email || !tel || !pass) { showErr('regErr', 'Preencha todos os campos.'); return; }
+  if (pass.length < 8) { showErr('regErr', 'A palavra-passe deve ter mínimo 8 caracteres.'); return; }
+
+  setLoading('btnReg', true, 'A criar conta...');
+  try {
+    const data = await api('POST', '/api/auth/registar', { nome, email, telefone: tel, password: pass });
+    STATE.token = data.token;
+    STATE.user  = data.user;
+    localStorage.setItem('anura_token', data.token);
+    showOk('regOk', 'Conta criada! A redirecionar...');
+    updateNav();
+    setTimeout(() => { closeModal('register'); goTo('dashboard'); }, 1200);
+  } catch (err) {
+    showErr('regErr', err.message);
+  } finally {
+    setLoading('btnReg', false, 'Criar Conta Grátis');
+  }
+}
+
+async function doLogout() {
+  try { await api('POST', '/api/auth/logout'); } catch {}
+  STATE.user = null;
+  STATE.token = null;
+  localStorage.removeItem('anura_token');
+  updateNav();
+  goTo('landing');
+  showToast('Sessão encerrada com segurança.');
+}
+
+// ── LANDING DEPOSIT ───────────────────────────────────────────
+async function handleDeposit() {
+  if (!STATE.user) { openModal('login'); return; }
+  const amount = parseFloat($('depositAmount').value);
+  const text   = $('depositText').value.trim();
+
+  if (!amount || amount < 200) { showErr('depositFormErr', 'O depósito mínimo é de 200 MT.'); return; }
+  if (!text || text.length < 15) { showErr('depositFormErr', 'Cole o texto completo do comprovativo.'); return; }
+
+  setLoading('btnDeposit', true, 'A validar...');
+  try {
+    const data = await api('POST', '/api/depositos/validar-comprovativo', { textoComprovativo: text, valor: amount });
+    $('depositAmount').value = '';
+    $('depositText').value = '';
+    showOk('depositFormOk', data.mensagem);
+    showToast(`✓ <strong>Depósito Confirmado!</strong><br>MT ${fmtMT(amount)} creditados no seu saldo.`, 6000);
+    // Unlock loan section
+    $('loanCards').style.opacity = '1';
+    $('loanCards').style.pointerEvents = 'auto';
+    $('btnLoan').style.opacity = '1';
+    $('loanNotice').innerHTML = `<strong style="color:var(--success);display:block;margin-bottom:0.3rem;">✓ Score de Crédito Ativo</strong>Depósito confirmado. Aceda agora aos planos de microcrédito.`;
+    $('loanNotice').style.borderLeftColor = 'var(--emerald)';
+    $('loanScoreDisp').textContent = `Score ${data.creditScore}`;
+    STATE.user.saldoDisponivel = data.saldoDisponivel;
+    STATE.user.creditScore = data.creditScore;
+  } catch (err) {
+    showErr('depositFormErr', err.message);
+  } finally {
+    setLoading('btnDeposit', false, 'Validar e Depositar');
+  }
+}
+
+async function handleLoan() {
+  if (!STATE.user) { openModal('login'); return; }
+  goTo('dashboard');
+  setTimeout(() => $('dashLoanAmount')?.focus(), 400);
+}
+
+function selectPlan(plan) {
+  if (!STATE.user) { openModal('login'); return; }
+  goTo('dashboard');
+  setTimeout(() => {
+    const sel = $('dashInvPlan');
+    if (sel) sel.value = plan;
+    $('dashInvAmount')?.focus();
+  }, 400);
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────
+async function loadDashboard() {
+  if (!STATE.user) return;
+
+  $('dashName').textContent = STATE.user.nome?.split(' ')[0] || '—';
+  $('dashDate').textContent = new Date().toLocaleDateString('pt-MZ', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+  // Load fresh profile
+  try {
+    const user = await api('GET', '/api/auth/perfil');
+    STATE.user = { ...STATE.user, ...user };
+    $('dashSaldo').innerHTML    = `${fmtMT(user.saldoDisponivel)} <span>MT</span>`;
+    $('dashInvestido').innerHTML = `${fmtMT(user.saldoInvestido)} <span>MT</span>`;
+    $('dashScore').textContent  = user.creditScore || 0;
+  } catch {}
+
+  // Load transactions
+  try {
+    const txs = await api('GET', '/api/transacoes');
+    const list = $('txList');
+    if (!txs.length) {
+      list.innerHTML = '<li style="color:rgba(250,248,242,0.3);font-size:0.85rem;padding:1rem 0;">Nenhuma transação ainda.</li>';
+    } else {
+      const tipoLabel = { deposito:'Depósito', levantamento:'Levantamento', investimento:'Investimento', credito:'Crédito', rendimento:'Rendimento' };
+      list.innerHTML = txs.slice(0,10).map(t => {
+        const isCredit = ['deposito','credito','rendimento'].includes(t.tipo);
+        return `<li class="tx-item">
+          <div class="tx-type">
+            <span class="tx-dot ${t.tipo}"></span>
+            <div>
+              <div>${tipoLabel[t.tipo]||t.tipo}</div>
+              <div style="font-size:0.72rem;color:rgba(250,248,242,0.35);margin-top:2px">${fmtDate(t.criadoEm)}</div>
+            </div>
+          </div>
+          <div>
+            <div class="tx-amount ${isCredit?'credit':'debit'}">${isCredit?'+':'-'}${fmtMT(t.valor)} MT</div>
+            <div class="tx-status ${t.estado}">${t.estado.replace('_',' ')}</div>
+          </div>
+        </li>`;
+      }).join('');
+    }
+  } catch {}
+
+  // Load investments
+  try {
+    const invs = await api('GET', '/api/investimentos/meus');
+    const el = $('investList');
+    if (!invs.length) {
+      el.innerHTML = '<div style="color:rgba(250,248,242,0.3);font-size:0.85rem;padding:1rem 0;">Nenhum investimento ativo.</div>';
+    } else {
+      const agora = Date.now();
+      el.innerHTML = invs.filter(i=>i.estado==='ativo').map(i => {
+        const diasPassados = Math.floor((agora - new Date(i.alocadoEm)) / 86400000);
+        const emCarencia = diasPassados < 15;
+        return `<div class="invest-item">
+          <div class="invest-row">
+            <span class="invest-plan">${i.plano.toUpperCase()}<span class="invest-badge ${emCarencia?'carencia':'ativo'}">${emCarencia?`${15-diasPassados}d carência`:'Livre'}</span></span>
+            <span class="invest-apy">${i.apy}% APY</span>
+          </div>
+          <div class="invest-meta">MT ${fmtMT(i.valor)} · Alocado em ${fmtDate(i.alocadoEm)}</div>
+        </div>`;
+      }).join('') || '<div style="color:rgba(250,248,242,0.3);font-size:0.85rem;padding:1rem 0;">Nenhum investimento ativo.</div>';
+    }
+  } catch {}
+}
+
+// ── DASHBOARD ACTIONS ─────────────────────────────────────────
+async function dashDeposit() {
+  const amount = parseFloat($('dashDepAmount').value);
+  const text   = $('dashDepText').value.trim();
+
+  if (!amount || amount < 200) { showErr('dashDepErr','Mínimo 200 MT.'); return; }
+  if (!text || text.length < 15) { showErr('dashDepErr','Cole o texto completo do comprovativo.'); return; }
+
+  setLoading('btnDashDep', true, 'A validar...');
+  try {
+    const data = await api('POST', '/api/depositos/validar-comprovativo', { textoComprovativo: text, valor: amount });
+    showOk('dashDepOk', data.mensagem);
+    $('dashDepAmount').value = '';
+    $('dashDepText').value = '';
+    $('dashSaldo').innerHTML = `${fmtMT(data.saldoDisponivel)} <span>MT</span>`;
+    $('dashScore').textContent = data.creditScore;
+    showToast(`✓ MT ${fmtMT(amount)} depositados com sucesso!`);
+    loadDashboard();
+  } catch (err) {
+    showErr('dashDepErr', err.message);
+  } finally {
+    setLoading('btnDashDep', false, 'Validar e Creditar');
+  }
+}
+
+async function dashWithdraw() {
+  const valor = parseFloat($('dashWdAmount').value);
+  if (!valor || valor <= 0) { showErr('dashWdErr','Insira um valor válido.'); return; }
+
+  setLoading('btnDashWd', true, 'A processar...');
+  try {
+    const data = await api('POST', '/api/levantamentos/pedir', { valor });
+    showOk('dashWdOk', data.mensagem);
+    $('dashWdAmount').value = '';
+    $('dashSaldo').innerHTML = `${fmtMT(data.saldoDisponivel)} <span>MT</span>`;
+    showToast(`⏳ Levantamento iniciado! Fundos na conta em 2 minutos.`, 6000);
+    // Auto-refresh after 130s
+    setTimeout(() => loadDashboard(), 130000);
+    loadDashboard();
+  } catch (err) {
+    showErr('dashWdErr', err.message);
+  } finally {
+    setLoading('btnDashWd', false, 'Solicitar Levantamento');
+  }
+}
+
+async function dashInvest() {
+  const plano = $('dashInvPlan').value;
+  const valor = parseFloat($('dashInvAmount').value);
+  if (!valor || valor <= 0) { showErr('dashInvErr','Insira um valor válido.'); return; }
+
+  setLoading('btnDashInv', true, 'A alocar...');
+  try {
+    const data = await api('POST', '/api/investimentos/alocar', { valor, plano });
+    showOk('dashInvOk', data.mensagem);
+    $('dashInvAmount').value = '';
+    $('dashSaldo').innerHTML    = `${fmtMT(data.saldoDisponivel)} <span>MT</span>`;
+    $('dashInvestido').innerHTML = `${fmtMT(data.saldoInvestido)} <span>MT</span>`;
+    showToast(`✓ Capital alocado no Plano ${plano.toUpperCase()}!`);
+    loadDashboard();
+  } catch (err) {
+    showErr('dashInvErr', err.message);
+  } finally {
+    setLoading('btnDashInv', false, 'Alocar Capital');
+  }
+}
+
+async function dashLoan() {
+  const valor      = parseFloat($('dashLoanAmount').value);
+  const prazoMeses = parseInt($('dashLoanPrazo').value);
+  if (!valor || valor <= 0) { showErr('dashLoanErr','Insira um valor válido.'); return; }
+
+  setLoading('btnDashLoan', true, 'A verificar...');
+  try {
+    const data = await api('POST', '/api/emprestimos/pedir', { valor, prazoMeses });
+    showOk('dashLoanOk', data.mensagem);
+    $('dashLoanAmount').value = '';
+    $('dashSaldo').innerHTML = `${fmtMT(data.saldoDisponivel)} <span>MT</span>`;
+    showToast(`✓ Empréstimo de MT ${fmtMT(valor)} aprovado!`);
+    loadDashboard();
+  } catch (err) {
+    showErr('dashLoanErr', err.message);
+  } finally {
+    setLoading('btnDashLoan', false, 'Pedir Empréstimo');
+  }
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────
+let _adminTab = 'users';
+
+function adminTab(tab) {
+  _adminTab = tab;
+  document.querySelectorAll('.admin-tab').forEach((t,i) => {
+    t.classList.toggle('active', (i===0&&tab==='users')||(i===1&&tab==='txs'));
+  });
+  if (tab === 'users') loadAdminUsers();
+  else loadAdminTxs();
+}
+
+async function loadAdminUsers() {
+  $('adminContent').innerHTML = '<div style="color:rgba(250,248,242,0.4);padding:2rem 0;">A carregar...</div>';
+  try {
+    const users = await api('GET', '/api/admin/utilizadores');
+    $('adminContent').innerHTML = `
+      <table class="admin-table">
+        <thead><tr><th>Nome</th><th>Email</th><th>Saldo</th><th>Score</th><th>KYC</th><th>Role</th></tr></thead>
+        <tbody>${users.map(u=>`
+          <tr>
+            <td>${u.nome}</td>
+            <td>${u.email}</td>
+            <td>MT ${fmtMT(u.saldoDisponivel)}</td>
+            <td>${u.creditScore}</td>
+            <td>${u.kycAprovado
+              ? '<span style="color:var(--success)">✓ Aprovado</span>'
+              : `<button class="btn-approve" onclick="adminKyc('${u._id}')">Aprovar</button>`
+            }</td>
+            <td style="text-transform:uppercase;font-size:0.78rem;letter-spacing:0.06em">${u.role}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch (err) {
+    $('adminContent').innerHTML = `<div style="color:var(--danger)">${err.message}</div>`;
+  }
+}
+
+async function loadAdminTxs() {
+  $('adminContent').innerHTML = '<div style="color:rgba(250,248,242,0.4);padding:2rem 0;">A carregar...</div>';
+  try {
+    const txs = await api('GET', '/api/admin/transacoes');
+    $('adminContent').innerHTML = `
+      <table class="admin-table">
+        <thead><tr><th>Utilizador</th><th>Tipo</th><th>Valor</th><th>Estado</th><th>Data</th><th>Ação</th></tr></thead>
+        <tbody>${txs.map(t=>`
+          <tr>
+            <td>${t.userId?.nome || '—'}</td>
+            <td style="text-transform:capitalize">${t.tipo}</td>
+            <td>MT ${fmtMT(t.valor)}</td>
+            <td class="tx-status ${t.estado}">${t.estado}</td>
+            <td>${fmtDate(t.criadoEm)}</td>
+            <td>${t.tipo==='levantamento'&&t.estado==='a_caminho'
+              ? `<button class="btn-approve" onclick="adminApprove('${t._id}')">Aprovar</button>`
+              : '—'
+            }</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  } catch (err) {
+    $('adminContent').innerHTML = `<div style="color:var(--danger)">${err.message}</div>`;
+  }
+}
+
+async function adminApprove(id) {
+  try {
+    await api('POST', `/api/admin/levantamentos/aprovar/${id}`);
+    showToast('✓ Levantamento aprovado manualmente.');
+    loadAdminTxs();
+  } catch (err) {
+    showToast(`Erro: ${err.message}`);
+  }
+}
+
+async function adminKyc(userId) {
+  try {
+    await api('POST', `/api/admin/kyc/aprovar/${userId}`);
+    showToast('✓ KYC aprovado.');
+    loadAdminUsers();
+  } catch (err) {
+    showToast(`Erro: ${err.message}`);
+  }
+}
+
+// ── ENTER KEY SUPPORT ─────────────────────────────────────────
+$('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+$('regPass').addEventListener('keydown', e => { if(e.key==='Enter') doRegister(); });
+
+// ── SCROLL FADE-IN ────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── INIT ──────────────────────────────────────────────────────
+(async function init() {
+  if (STATE.token) {
+    try {
+      const user = await api('GET', '/api/auth/perfil');
+      STATE.user = user;
+      updateNav();
+    } catch {
+      STATE.token = null;
+      localStorage.removeItem('anura_token');
+    }
+  }
+  updateNav();
+})();
+</script>
+</body>
+</html>
